@@ -54,6 +54,15 @@ Widget recipeCards(BuildContext context, Recipe recipe, bool isPersonal) {
                 'This recipe needs ${recipe.ingredients!.length} of ingredients',
                 style: TextStyle(fontSize: textSize),
               ),
+              addVerticalSpace(SizeConfigure.heightConfig! * 3),
+              Center(
+                child: Text(
+                  '${recipe.directions!.length} steps to make',
+                  style:
+                  TextStyle(fontSize: textSize, fontWeight: FontWeight.bold),
+                ),
+              ),
+
             ],
           ),
         ))),

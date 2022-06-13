@@ -49,7 +49,7 @@ dependencies:
   firebase_core: ^1.17.1
   firebase_auth: ^3.3.19
   google_sign_in: ^5.3.3
-
+  loading_animation_widget:
   shimmer_animation: ^2.1.0
 
 dev_dependencies:
