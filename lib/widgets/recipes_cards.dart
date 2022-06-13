@@ -57,7 +57,7 @@ Widget recipeCards(BuildContext context, Recipe recipe, bool isPersonal) {
               addVerticalSpace(SizeConfigure.heightConfig! * 3),
               Center(
                 child: Text(
-                  '${recipe.directions!.length} steps to make',
+                  (recipe.directions!.length >1) ? '${recipe.directions!.length} steps to make': '1 steps to mak',
                   style:
                   TextStyle(fontSize: textSize, fontWeight: FontWeight.bold),
                 ),
