@@ -11,6 +11,7 @@ String personalRecipeToMap(PersonalRecipe data) => json.encode(data.toMap());
 
 class PersonalRecipe {
   PersonalRecipe({
+    this.id,
     this.name,
     this.description,
     this.kCal,
@@ -18,6 +19,7 @@ class PersonalRecipe {
     this.ingredients,
   });
 
+  String? id;
   String? name;
   String? description;
   int? kCal;
@@ -25,6 +27,7 @@ class PersonalRecipe {
   List<Ingredients>? ingredients;
 
   factory PersonalRecipe.fromMap(Map<String, dynamic> json) => PersonalRecipe(
+    id: json["id"],
     name: json["name"] ?? 'no name',
     description: json["description"] ?? 'no description',
     kCal: json["kCal"] ?? 0,
@@ -33,6 +36,7 @@ class PersonalRecipe {
   );
 
   Map<String, dynamic> toMap() => {
+    "id": id,
     "name": name ?? 'no name',
     "description": description ?? 'no description',
     "kCal": kCal ?? 0,
@@ -41,6 +45,7 @@ class PersonalRecipe {
   };
 
   PersonalRecipe.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     description = json['description'];
     kCal = json['kCal'];
@@ -53,6 +58,7 @@ class PersonalRecipe {
     }}
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.name;
     data['description'] = this.description;
     data['kCal'] = this.kCal;

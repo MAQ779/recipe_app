@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/facilities/size_configuration.dart';
-
 import '../../../UI/create_personal_recipe.dart';
 import '../../../UI/update_personal_recipes.dart';
 import '../../../models/all_recipe.dart';
@@ -28,14 +27,13 @@ Widget childFloatingButtons(BuildContext context, List<Recipe> recipes) {
       ),
       ActionButton(
         onPressed: () => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  UpdatePersonalRecipe(
-                      recipes: recipes,
-                    ),
-                  ))
-
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UpdatePersonalRecipe(
+                  recipes: recipes,
+                ),
+              ))
         },
         icon: const Icon(Icons.edit),
       ),

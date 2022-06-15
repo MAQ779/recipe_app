@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import '../../UI/recipes_main_page.dart';
 import '../../constants/theme_constants.dart';
 import '../../facilities/adding_space.dart';
 import '../../facilities/size_configuration.dart';
@@ -60,10 +61,8 @@ Future recipeSheet(BuildContext context, Recipe recipe, bool isPersonal) {
                           child: SizedBox(
                             width: SizeConfigure.widthConfig!*25,
                             child: ElevatedButton(
-                              onPressed: () async {
-                                String authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxODA3N2ViZDdiMTVlM2ViODBhYWUiLCJpYXQiOjE2NTUwMTUwNTZ9.pJlipvWqnxqLicBLVYALR_Wno5eysPqMNrC-jdzJgiU';
-                                log(recipe.id.toString());
-                                await FetchRecipes().deletePersonalRecipe(recipe.id.toString(), authToken);
+                              onPressed: () {
+                                deletePersonalRecipe(context, recipe);
                               },
                               child: const Center(child: Text('delete')),
                             ),
@@ -78,4 +77,22 @@ Future recipeSheet(BuildContext context, Recipe recipe, bool isPersonal) {
           ),
         );
       });
+
+
 }
+
+Future<void> deletePersonalRecipe(BuildContext context, Recipe recipe)async {
+  String authToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxODA3N2ViZDdiMTVlM2ViODBhYWUiLCJpYXQiOjE2NTUwMTUwNTZ9.pJlipvWqnxqLicBLVYALR_Wno5eysPqMNrC-jdzJgiU';
+  log(recipe.id.toString());
+  await FetchRecipes().deletePersonalRecipe(recipe.id.toString(), authToken);
+  Navigator.of(context).pop();
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) =>  const RecipesUI(
+      ),
+    ),);
+
+}
+
+

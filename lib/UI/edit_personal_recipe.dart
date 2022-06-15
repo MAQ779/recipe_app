@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:recipe_app/UI/recipes_main_page.dart';
+import 'package:recipe_app/services/controller/global_controller.dart';
 
 import '../Constants/theme_constants.dart';
 import '../facilities/adding_space.dart';
@@ -156,7 +160,7 @@ class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
                           onPressed: () {
                             setState(() {
                               if (_formKey.currentState!.validate()) {
-                                formatNewPersonalRecipe(_formKey);
+                                formatUpdatePersonalRecipe(_formKey);
                               }
                             });
                           },
@@ -240,7 +244,7 @@ class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
   }
 
 // method to formatting the form values into personal recipe
-  Future<void> formatNewPersonalRecipe(
+  Future<void> formatUpdatePersonalRecipe(
       GlobalKey<FormBuilderState> _formKey) async {
     _formKey.currentState!.save();
 
@@ -266,16 +270,25 @@ class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
     quantity.clear();
 
     PersonalRecipe newRecipe = PersonalRecipe(
+      id: widget.recipe.id,
       name: _formKey.currentState!.value['title'],
       description: _formKey.currentState!.value['description'],
       kCal: double.tryParse(_formKey.currentState!.value['calo'])!.round(),
       directions: direction,
       ingredients: ingredients,
     );
+    log(ApiAuthController.isLogin.toString());
+    log(ApiAuthController.authToken);
     String authToken =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxODA3N2ViZDdiMTVlM2ViODBhYWUiLCJpYXQiOjE2NTUwMTUwNTZ9.pJlipvWqnxqLicBLVYALR_Wno5eysPqMNrC-jdzJgiU';
-    await FetchRecipes().createPersonalRecipe(newRecipe, authToken);
-
-    //Navigator.of(context).pop();
+    await FetchRecipes().updatePersonalRecipe(newRecipe, authToken);
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  const RecipesUI(
+        ),
+      ),);
   }
 }

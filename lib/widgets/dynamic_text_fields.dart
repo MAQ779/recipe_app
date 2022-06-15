@@ -30,7 +30,7 @@ class _DynamicFieldsState extends State<DynamicFields> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         _directionController?.text;
     });
-    
+
     return FormBuilderTextField(
       controller: _directionController,
 

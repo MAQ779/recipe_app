@@ -4,14 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/blocs/all_recipe_bloc/all_recipe_bloc.dart';
 import 'package:recipe_app/constants/theme_constants.dart';
 import 'package:recipe_app/facilities/size_configuration.dart';
-
+import 'package:recipe_app/services/controller/global_controller.dart';
 import '../facilities/adding_space.dart';
 import '../models/all_recipe.dart';
-
 import '../widgets/buttons/floating_button/child_floating_buttons.dart';
 import '../widgets/buttons/text_btn.dart';
 import '../widgets/loading/loading_page.dart';
-
 import '../widgets/recipes_list.dart';
 
 class RecipesUI extends StatefulWidget {
@@ -25,6 +23,7 @@ class RecipesUI extends StatefulWidget {
 
 class _RecipesUIState extends State<RecipesUI> {
   double titleSize = SizeConfigure.heightConfig! * 5;
+  double titleSize2 = SizeConfigure.heightConfig! * 4;
   double textButtonSize = SizeConfigure.heightConfig! * 4;
   double iconSize = SizeConfigure.imageConfig! * 13;
 
@@ -32,7 +31,7 @@ class _RecipesUIState extends State<RecipesUI> {
   List<Recipe>? recipes;
   final RecipesBloc _recipesBloc = RecipesBloc();
   final RecipesBloc _personalRecipesBloc = RecipesBloc();
-  TextEditingController searchController = TextEditingController();
+  //TextEditingController searchController = TextEditingController();
   @override
   void initState() {
     _recipesBloc.add(GetRecipeList());
@@ -66,14 +65,12 @@ class _RecipesUIState extends State<RecipesUI> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(),
                 Text(
                   FirebaseAuth.instance.currentUser!.displayName.toString(),
                   style: ThemeConst.lightTheme.textTheme.titleMedium?.copyWith(
-                    fontSize: titleSize,
+                    fontSize: titleSize2,
                   ),
                 ),
               ],
@@ -152,6 +149,14 @@ class _RecipesUIState extends State<RecipesUI> {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.error!)));
             }
+            setState(() {
+              if (state is RecipesLoaded) {
+                if (ApiAuthController.newPersonalRecipe) {
+                  GetPersonalRecipeList();
+                  ApiAuthController.newPersonalRecipe = false;
+                }
+              }
+            });
           },
           child:
               BlocBuilder<RecipesBloc, RecipesState>(builder: (context, state) {
