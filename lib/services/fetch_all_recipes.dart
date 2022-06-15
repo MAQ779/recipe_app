@@ -31,10 +31,20 @@ class FetchRecipes {
           headers: headers);
 
       // result = AllRecipes.fromJson(response.body) as List<Recipe>;
+      //log(response.body.contains('No recipes').toString());
+
       return AllRecipes.fromJson(response.body);
-    } catch (e, stacktrace) {
-      log("Exception: $e  stacktrace: $stacktrace");
-      return AllRecipes.withError('Failed to load Recipes');
+    } catch (e) {
+      bool success = true;
+      List<Recipe> recipes = [
+        Recipe(
+            name: 'NO recipes',
+            description: ' add at least one personal recipe ',
+            ingredients: [Ingredient(id: '1', name: 'test', quantity: '4')],
+            directions: ['step1'])
+      ];
+      AllRecipes test = AllRecipes(success: success, recipes: recipes);
+      return test;
     }
   }
 

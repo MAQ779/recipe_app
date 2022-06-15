@@ -3,6 +3,7 @@ import 'package:recipe_app/UI/recipes_main_page.dart';
 import 'package:recipe_app/facilities/adding_space.dart';
 import 'package:recipe_app/facilities/size_configuration.dart';
 import 'package:recipe_app/models/personal_recipe.dart';
+import 'package:recipe_app/services/controller/global_controller.dart';
 import '../Constants/theme_constants.dart';
 import '../services/fetch_all_recipes.dart';
 import '../widgets/dynamic_text_fields.dart';
@@ -300,9 +301,9 @@ class _NewPersonalRecipeFormState extends State<NewPersonalRecipeForm> {
       directions: direction,
       ingredients: ingredients,
     );
-    String authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxODA3N2ViZDdiMTVlM2ViODBhYWUiLCJpYXQiOjE2NTUwMTUwNTZ9.pJlipvWqnxqLicBLVYALR_Wno5eysPqMNrC-jdzJgiU';
-    await FetchRecipes().createPersonalRecipe(newRecipe, authToken);
+
+    await FetchRecipes()
+        .createPersonalRecipe(newRecipe, ApiAuthController.authToken);
 
     Navigator.of(context).pop();
     Navigator.pushReplacement(

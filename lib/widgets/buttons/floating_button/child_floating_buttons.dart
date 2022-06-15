@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_app/UI/login.dart';
 import 'package:recipe_app/facilities/size_configuration.dart';
 import '../../../UI/create_personal_recipe.dart';
 import '../../../UI/update_personal_recipes.dart';
@@ -38,7 +39,11 @@ Widget childFloatingButtons(BuildContext context, List<Recipe> recipes) {
         icon: const Icon(Icons.edit),
       ),
       ActionButton(
-        onPressed: () => {logout()},
+        onPressed: () => {
+          logout(),
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const Login())),
+        },
         icon: const Icon(Icons.logout),
       ),
     ],

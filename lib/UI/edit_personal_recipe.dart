@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:recipe_app/UI/recipes_main_page.dart';
 import 'package:recipe_app/services/controller/global_controller.dart';
-
 import '../Constants/theme_constants.dart';
 import '../facilities/adding_space.dart';
 import '../facilities/size_configuration.dart';
@@ -277,18 +274,15 @@ class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
       directions: direction,
       ingredients: ingredients,
     );
-    log(ApiAuthController.isLogin.toString());
-    log(ApiAuthController.authToken);
-    String authToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjMxODA3N2ViZDdiMTVlM2ViODBhYWUiLCJpYXQiOjE2NTUwMTUwNTZ9.pJlipvWqnxqLicBLVYALR_Wno5eysPqMNrC-jdzJgiU';
-    await FetchRecipes().updatePersonalRecipe(newRecipe, authToken);
+    await FetchRecipes()
+        .updatePersonalRecipe(newRecipe, ApiAuthController.authToken);
     Navigator.of(context).pop();
     Navigator.of(context).pop();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) =>  const RecipesUI(
-        ),
-      ),);
+        builder: (context) => const RecipesUI(),
+      ),
+    );
   }
 }
