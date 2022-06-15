@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +9,6 @@ import 'package:recipe_app/facilities/size_configuration.dart';
 import 'package:recipe_app/services/controller/global_controller.dart';
 import '../blocs/google_auth_bloc/auth_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import '../services/fetch_all_recipes.dart';
 
 class Login extends StatefulWidget {
@@ -28,22 +25,21 @@ class _LoginState extends State<Login> {
         body: BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
         if (state is Authenticated) {
-          // final user = FirebaseAuth.instance.currentUser;
           if (ApiAuthController.isSignUp) {
-            log('loginPage loaded signup: ${ApiAuthController.isSignUp.toString()}');
-            String message = await FetchRecipes().registerToApi(
+            await FetchRecipes().registerToApi(
                 FirebaseAuth.instance.currentUser!.displayName.toString(),
                 FirebaseAuth.instance.currentUser!.email.toString(),
                 FirebaseAuth.instance.currentUser!.uid.toString());
-            log(message);
-
-            //if(message.contains(other))
-          } else {
-            log('loginPage loaded login:');
-            final message = await FetchRecipes().logInToApi(
+            final auth = await FetchRecipes().logInToApi(
                 FirebaseAuth.instance.currentUser!.email.toString(),
                 FirebaseAuth.instance.currentUser!.uid.toString());
-            log(message.toString());
+
+            ApiAuthController.authToken = auth;
+          } else {
+            final auth = await FetchRecipes().logInToApi(
+                FirebaseAuth.instance.currentUser!.email.toString(),
+                FirebaseAuth.instance.currentUser!.uid.toString());
+            ApiAuthController.authToken = auth;
           }
 
           Navigator.pushReplacement(context,
@@ -55,7 +51,6 @@ class _LoginState extends State<Login> {
       },
       child: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
         if (state is Loading) {
-          // Showing the loading indicator while the user is signing in
           return Center(
               child: LoadingAnimationWidget.inkDrop(
                   color: ThemeConst.lightTheme.primaryColor,

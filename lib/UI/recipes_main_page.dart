@@ -34,6 +34,7 @@ class _RecipesUIState extends State<RecipesUI> {
   //TextEditingController searchController = TextEditingController();
   @override
   void initState() {
+    //log(ApiAuthController.authToken);
     _recipesBloc.add(GetRecipeList());
     _personalRecipesBloc.add(GetPersonalRecipeList());
     super.initState();
