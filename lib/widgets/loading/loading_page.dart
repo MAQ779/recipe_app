@@ -31,9 +31,9 @@ Widget loading() {
                       children: [
 
                         addVerticalSpace(SizeConfigure.heightConfig! * 2),
-                        loaderPart(80, 50, color),
+                        loaderPart(50, 30, color),
                         addVerticalSpace(SizeConfigure.heightConfig! * 2),
-                        loaderPart(16, 50, color),
+                        loaderPart(16, 30, color),
                         addVerticalSpace(SizeConfigure.heightConfig! * 1),
                       ],
                     ),
