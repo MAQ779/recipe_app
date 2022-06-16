@@ -91,12 +91,13 @@ class _UpdatePersonalRecipeState extends State<UpdatePersonalRecipe> {
     }
   }
 
-  Widget updateRecipeCard(BuildContext context, Recipe recipe, int i) {
+  Widget updateRecipeCard(BuildContext context, Recipe recipe, int index) {
     return Card(
+      color: (index.isEven)? ThemeConst.lightTheme.primaryColor: ThemeConst.whiteCard,
         child: ExpansionTile(
-      textColor: Colors.black,
-      key: Key(i.toString()), //attention
-      initiallyExpanded: i == selectedCard,
+      textColor: (index.isEven) ? Colors.white : Colors.black,
+      key: Key(index.toString()), //attention
+      initiallyExpanded: index == selectedCard,
       tilePadding: EdgeInsets.symmetric(
           horizontal: SizeConfigure.heightConfig! * 1,
           vertical: SizeConfigure.heightConfig! * 1),
@@ -117,13 +118,13 @@ class _UpdatePersonalRecipeState extends State<UpdatePersonalRecipe> {
             fontSize: SizeConfigure.textConfig! * 2),
       ),
       children: [
-        updateButton(context, recipe),
+        updateButton(context, recipe, index),
       ],
 
       onExpansionChanged: ((newState) {
         if (newState) {
           setState(() {
-            selectedCard = i;
+            selectedCard = index;
           });
         } else {
           setState(() {
@@ -134,18 +135,18 @@ class _UpdatePersonalRecipeState extends State<UpdatePersonalRecipe> {
     ));
   }
 
-  Widget updateButton(BuildContext context, Recipe recipe) => Row(
+  Widget updateButton(BuildContext context, Recipe recipe, int index) => Row(
         children: [
           Expanded(
               child: TextButton.icon(
             clipBehavior: Clip.hardEdge,
-            icon: const Icon(
+            icon:  Icon(
               Icons.edit,
-              color: Colors.white,
+              color: (index.isEven) ? Colors.white : Colors.black,
             ),
-            label: const Text(
+            label:  Text(
               'Update',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: (index.isEven) ? Colors.white : Colors.black),
             ),
             onPressed: () {
               Navigator.push(

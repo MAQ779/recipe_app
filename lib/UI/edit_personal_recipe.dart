@@ -19,6 +19,7 @@ class EditPersonalRecipe extends StatefulWidget {
 }
 
 class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
+
   double titleSize = SizeConfigure.heightConfig! * 4;
   double paddingRight = SizeConfigure.widthConfig! * 4;
   double paddingTop = SizeConfigure.widthConfig! * 2;
@@ -281,7 +282,9 @@ class _EditPersonalRecipeState extends State<EditPersonalRecipe> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const RecipesUI(),
+        builder: (context) => const RecipesUI(
+          isAllRecipe: false,
+        ),
       ),
     );
   }
