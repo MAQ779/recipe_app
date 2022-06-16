@@ -41,9 +41,12 @@ class _LoginState extends State<Login> {
                 FirebaseAuth.instance.currentUser!.uid.toString());
             ApiAuthController.authToken = auth;
           }
-
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const RecipesUI(isAllRecipe: true,)));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const RecipesUI(
+                        isAllRecipe: true,
+                      )));
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error)));
@@ -101,8 +104,8 @@ class _LoginState extends State<Login> {
                                         children: [
                                           FaIcon(
                                             FontAwesomeIcons.google,
-                                            color:
-                                                ThemeConst.lightTheme.hoverColor,
+                                            color: ThemeConst
+                                                .lightTheme.hoverColor,
                                           ),
                                           addHorizontalSpace(
                                               SizeConfigure.widthConfig),
@@ -110,7 +113,8 @@ class _LoginState extends State<Login> {
                                             'log-in',
                                             style: TextStyle(
                                                 fontSize:
-                                                    SizeConfigure.textConfig! * 2,
+                                                    SizeConfigure.textConfig! *
+                                                        2,
                                                 color: ThemeConst
                                                     .lightTheme.primaryColor),
                                           ),
@@ -132,8 +136,8 @@ class _LoginState extends State<Login> {
                                         children: [
                                           FaIcon(
                                             FontAwesomeIcons.google,
-                                            color:
-                                                ThemeConst.lightTheme.hoverColor,
+                                            color: ThemeConst
+                                                .lightTheme.hoverColor,
                                           ),
                                           addHorizontalSpace(
                                               SizeConfigure.widthConfig),
@@ -141,7 +145,8 @@ class _LoginState extends State<Login> {
                                             'sign-up',
                                             style: TextStyle(
                                                 fontSize:
-                                                    SizeConfigure.textConfig! * 2,
+                                                    SizeConfigure.textConfig! *
+                                                        2,
                                                 color: ThemeConst
                                                     .lightTheme.primaryColor),
                                           ),
