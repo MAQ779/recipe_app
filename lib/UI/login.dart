@@ -57,103 +57,106 @@ class _LoginState extends State<Login> {
                   size: SizeConfigure.imageConfig! * 30));
         } else {
           return SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Image(image: AssetImage('assets/recipe_login.jpeg')),
-                addVerticalSpace(SizeConfigure.heightConfig! * 3),
-                Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        'you need to authenticate',
-                        style: TextStyle(
-                            fontSize: SizeConfigure.textConfig! * 3,
-                            color: ThemeConst.lightTheme.primaryColor),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        'through google first',
-                        style: TextStyle(
-                            fontSize: SizeConfigure.textConfig! * 3,
-                            color: ThemeConst.lightTheme.primaryColor),
-                      ),
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: SizeConfigure.widthConfig! * 25,
-                        height: SizeConfigure.heightConfig! * 18,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            addVerticalSpace(SizeConfigure.heightConfig! * 3),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      _authenticateWithGoogle(context);
-                                    },
-                                    child: Row(
-                                      children: [
-                                        FaIcon(
-                                          FontAwesomeIcons.google,
-                                          color:
-                                              ThemeConst.lightTheme.hoverColor,
-                                        ),
-                                        addHorizontalSpace(
-                                            SizeConfigure.widthConfig),
-                                        Text(
-                                          'log-in',
-                                          style: TextStyle(
-                                              fontSize:
-                                                  SizeConfigure.textConfig! * 2,
-                                              color: ThemeConst
-                                                  .lightTheme.primaryColor),
-                                        ),
-                                      ],
-                                    )),
-                              ],
-                            ),
-                            addVerticalSpace(SizeConfigure.heightConfig! * 4),
-                            Row(
-                              children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        ApiAuthController.isSignUp = true;
-                                      });
-                                      _authenticateWithGoogle(context);
-                                    },
-                                    child: Row(
-                                      children: [
-                                        FaIcon(
-                                          FontAwesomeIcons.google,
-                                          color:
-                                              ThemeConst.lightTheme.hoverColor,
-                                        ),
-                                        addHorizontalSpace(
-                                            SizeConfigure.widthConfig),
-                                        Text(
-                                          'sign-up',
-                                          style: TextStyle(
-                                              fontSize:
-                                                  SizeConfigure.textConfig! * 2,
-                                              color: ThemeConst
-                                                  .lightTheme.primaryColor),
-                                        ),
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ],
+            child: Container(
+              color: const Color(0xfffefcfd),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Image(image: AssetImage('assets/recipe_login.jpeg')),
+                  addVerticalSpace(SizeConfigure.heightConfig! * 3),
+                  Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          'you need to authenticate',
+                          style: TextStyle(
+                              fontSize: SizeConfigure.textConfig! * 3,
+                              color: ThemeConst.lightTheme.primaryColor),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      Center(
+                        child: Text(
+                          'through google first',
+                          style: TextStyle(
+                              fontSize: SizeConfigure.textConfig! * 3,
+                              color: ThemeConst.lightTheme.primaryColor),
+                        ),
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: SizeConfigure.widthConfig! * 25,
+                          height: SizeConfigure.heightConfig! * 18,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              addVerticalSpace(SizeConfigure.heightConfig! * 3),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                      onTap: () {
+                                        _authenticateWithGoogle(context);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.google,
+                                            color:
+                                                ThemeConst.lightTheme.hoverColor,
+                                          ),
+                                          addHorizontalSpace(
+                                              SizeConfigure.widthConfig),
+                                          Text(
+                                            'log-in',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    SizeConfigure.textConfig! * 2,
+                                                color: ThemeConst
+                                                    .lightTheme.primaryColor),
+                                          ),
+                                        ],
+                                      )),
+                                ],
+                              ),
+                              addVerticalSpace(SizeConfigure.heightConfig! * 4),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          ApiAuthController.isSignUp = true;
+                                        });
+                                        _authenticateWithGoogle(context);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.google,
+                                            color:
+                                                ThemeConst.lightTheme.hoverColor,
+                                          ),
+                                          addHorizontalSpace(
+                                              SizeConfigure.widthConfig),
+                                          Text(
+                                            'sign-up',
+                                            style: TextStyle(
+                                                fontSize:
+                                                    SizeConfigure.textConfig! * 2,
+                                                color: ThemeConst
+                                                    .lightTheme.primaryColor),
+                                          ),
+                                        ],
+                                      )),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           );
         }
