@@ -12,10 +12,10 @@ Widget loading() {
     enabled: true,
     direction: const ShimmerDirection.fromLTRB(),
     child: SizedBox(
-      height: SizeConfigure.heightConfig! * 25, // card height
+      height: SizeConfigure.heightConfig! * 60, // card height
       child: PageView.builder(
         itemCount: 2,
-        controller: PageController(viewportFraction: 0.8),
+        controller: PageController(viewportFraction: 0.6),
         itemBuilder: (_, i) {
           return Transform.scale(
               scale: (0 == i) ? 1.0 : .9,
@@ -29,17 +29,11 @@ Widget loading() {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            loaderPart(8, 25, color),
-                            loaderPart(8, 10, color),
-                          ],
-                        ),
+
                         addVerticalSpace(SizeConfigure.heightConfig! * 2),
-                        loaderPart(8, 50, color),
+                        loaderPart(80, 50, color),
                         addVerticalSpace(SizeConfigure.heightConfig! * 2),
-                        loaderPart(16, 100, color),
+                        loaderPart(16, 50, color),
                         addVerticalSpace(SizeConfigure.heightConfig! * 1),
                       ],
                     ),

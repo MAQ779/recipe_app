@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 class ThemeConst {
     Color primary  = const Color(0xfffc5142);
     Color spare = const Color(0xfffc7462);
+    static Color whiteCard = const Color(0xfff1efef);
     bool isDark;
 
     ThemeConst({required this.isDark});

@@ -43,7 +43,7 @@ class _LoginState extends State<Login> {
           }
 
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const RecipesUI()));
+              MaterialPageRoute(builder: (context) => const RecipesUI(isAllRecipe: true,)));
         } else if (state is AuthError) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error)));
