@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_app/resources/repositories/auth_repository.dart';
@@ -6,7 +5,6 @@ import 'UI/login.dart';
 import 'blocs/google_auth_bloc/auth_bloc.dart';
 import 'constants/theme_constants.dart';
 import 'facilities/size_configuration.dart';
-import 'services/fetch_all_recipes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -61,11 +59,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-Future<String> getToken() async {
-  String auth = await FetchRecipes().logInToApi(
-      FirebaseAuth.instance.currentUser!.displayName.toString(),
-      FirebaseAuth.instance.currentUser!.email.toString());
-  return await auth;
 }

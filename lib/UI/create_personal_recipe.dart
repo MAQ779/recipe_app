@@ -309,7 +309,7 @@ class _NewPersonalRecipeFormState extends State<NewPersonalRecipeForm> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const RecipesUI(),
+        builder: (context) => const RecipesUI(isAllRecipe: false,),
       ),
     );
 
