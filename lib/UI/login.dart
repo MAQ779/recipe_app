@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:recipe_app/UI/recipes_main_page.dart';
 import 'package:recipe_app/constants/theme_constants.dart';
 import 'package:recipe_app/facilities/adding_space.dart';
 import 'package:recipe_app/facilities/size_configuration.dart';
 import 'package:recipe_app/services/controller/global_controller.dart';
 import '../blocs/google_auth_bloc/auth_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../services/fetch_all_recipes.dart';
 
 class Login extends StatefulWidget {
